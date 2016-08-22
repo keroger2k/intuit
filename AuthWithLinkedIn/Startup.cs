@@ -6,7 +6,6 @@ using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Http.Authentication;
+using OAuth.Intuit;
 
 namespace AuthWithLinkedIn
 {
@@ -70,76 +70,10 @@ namespace AuthWithLinkedIn
                 LogoutPath = new PathString("/logout")
             });
 
-            // Add the OAuth2 middleware
-            app.UseOAuthAuthentication(new OAuthOptions
-            {
-                // We need to specify an Authentication Scheme
-                AuthenticationScheme = "LinkedIn",
 
-                // Configure the LinkedIn Client ID and Client Secret
-                ClientId = Configuration["linkedin:clientId"],
-                ClientSecret = Configuration["linkedin:clientSecret"],
-
-                // Set the callback path, so LinkedIn will call back to http://APP_URL/signin-linkedin 
-                // Also ensure that you have added the URL as an Authorized Redirect URL in your LinkedIn application
-                CallbackPath = new PathString("/signin-linkedin"),
-
-                // Configure the LinkedIn endpoints                
-                AuthorizationEndpoint = "https://www.linkedin.com/oauth/v2/authorization",
-                TokenEndpoint = "https://www.linkedin.com/oauth/v2/accessToken",
-                UserInformationEndpoint = "https://api.linkedin.com/v1/people/~:(id,formatted-name,email-address,picture-url)",
-
-                Scope = { "r_basicprofile", "r_emailaddress" },
-
-                Events = new OAuthEvents
-                {
-                    // The OnCreatingTicket event is called after the user has been authenticated and the OAuth middleware has 
-                    // created an auth ticket. We need to manually call the UserInformationEndpoint to retrieve the user's information,
-                    // parse the resulting JSON to extract the relevant information, and add the correct claims.
-                    OnCreatingTicket = async context =>
-                    {
-                        // Retrieve user info
-                        var request = new HttpRequestMessage(HttpMethod.Get, context.Options.UserInformationEndpoint);
-                        request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", context.AccessToken);
-                        request.Headers.Add("x-li-format", "json"); // Tell LinkedIn we want the result in JSON, otherwise it will return XML
-
-                        var response = await context.Backchannel.SendAsync(request, context.HttpContext.RequestAborted);
-                        response.EnsureSuccessStatusCode();
-
-                        // Extract the user info object
-                        var user = JObject.Parse(await response.Content.ReadAsStringAsync());
-
-                        // Add the Name Identifier claim
-                        var userId = user.Value<string>("id");
-                        if (!string.IsNullOrEmpty(userId))
-                        {
-                            context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userId, ClaimValueTypes.String, context.Options.ClaimsIssuer));
-                        }
-
-                        // Add the Name claim
-                        var formattedName = user.Value<string>("formattedName");
-                        if (!string.IsNullOrEmpty(formattedName))
-                        {
-                            context.Identity.AddClaim(new Claim(ClaimsIdentity.DefaultNameClaimType, formattedName, ClaimValueTypes.String, context.Options.ClaimsIssuer));
-                        }
-
-                        // Add the email address claim
-                        var email = user.Value<string>("emailAddress");
-                        if (!string.IsNullOrEmpty(email))
-                        {
-                            context.Identity.AddClaim(new Claim(ClaimTypes.Email, email, ClaimValueTypes.String,
-                                context.Options.ClaimsIssuer));
-                        }
-
-                        // Add the Profile Picture claim
-                        var pictureUrl = user.Value<string>("pictureUrl");
-                        if (!string.IsNullOrEmpty(email))
-                        {
-                            context.Identity.AddClaim(new Claim("profile-picture", pictureUrl, ClaimValueTypes.String,
-                                context.Options.ClaimsIssuer));
-                        }
-                    }
-                }
+            app.UseIntuitAuthentication(new IntuitOptions {
+                ConsumerKey = "qyprdo8dCoBnClt1hxLoCEbdGnZRuK",
+                ConsumerSecret = "QR8OmIvGH3FwEvRjqzmj9jKuxKzlux9SAPaNBJxE",
             });
 
             // Listen for requests on the /login path, and issue a challenge to log in with the LinkedIn middleware
@@ -148,7 +82,7 @@ namespace AuthWithLinkedIn
                 builder.Run(async context =>
                 {
                     // Return a challenge to invoke the LinkedIn authentication scheme
-                    await context.Authentication.ChallengeAsync("LinkedIn", new AuthenticationProperties() { RedirectUri = "/" });
+                    await context.Authentication.ChallengeAsync("Intuit", new AuthenticationProperties() { RedirectUri = "/" });
                 });
             });
 

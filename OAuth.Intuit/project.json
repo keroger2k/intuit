@@ -1,0 +1,15 @@
+﻿{
+  "version": "1.0.0",
+  "description": "ASP.NET Core middleware that enables an application to support Intuit's OAuth 1.0 authentication workflow.",
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "Microsoft.AspNetCore.Authentication": "1.0.0",
+    "Newtonsoft.Json": "9.0.1"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}

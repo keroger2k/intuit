@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AuthWithLinkedIn", "AuthWithLinkedIn.xproj", "{AD7BC26F-8917-44D7-B3A2-6902031B48F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F0D9C20C-CDA6-4E1D-8765-160E110205C2}"
+	ProjectSection(SolutionItems) = preProject
+		..\global.json = ..\global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OAuth.Intuit", "..\OAuth.Intuit\OAuth.Intuit.xproj", "{542EA8AA-EA2C-41C0-A643-0E57A38B9ACE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IppMvc3", "..\..\QuickbooksV3API-DotNet-Mvc3-Sample\IppMvc3\IppMvc3.csproj", "{FEAAB614-B46F-48B8-9BD1-81A257A32DEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{9C72484A-D85A-491E-98B0-2426A675665A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD7BC26F-8917-44D7-B3A2-6902031B48F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD7BC26F-8917-44D7-B3A2-6902031B48F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD7BC26F-8917-44D7-B3A2-6902031B48F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD7BC26F-8917-44D7-B3A2-6902031B48F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{542EA8AA-EA2C-41C0-A643-0E57A38B9ACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{542EA8AA-EA2C-41C0-A643-0E57A38B9ACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{542EA8AA-EA2C-41C0-A643-0E57A38B9ACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{542EA8AA-EA2C-41C0-A643-0E57A38B9ACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEAAB614-B46F-48B8-9BD1-81A257A32DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEAAB614-B46F-48B8-9BD1-81A257A32DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEAAB614-B46F-48B8-9BD1-81A257A32DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEAAB614-B46F-48B8-9BD1-81A257A32DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C72484A-D85A-491E-98B0-2426A675665A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C72484A-D85A-491E-98B0-2426A675665A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C72484A-D85A-491E-98B0-2426A675665A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C72484A-D85A-491E-98B0-2426A675665A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

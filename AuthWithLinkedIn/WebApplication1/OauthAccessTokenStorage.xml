@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--This xml file persists the Oauth Access token so that user doen't need to go through the approval process all over again.-->
+<oauthtokenstorage>
+  <record usermailid="" encryptedaccesskey="" encryptedaccesskeysecret="" realmid="" dataSource="">
+  </record>
+  <record usermailid="peter_lavelle@intuit.com" encryptedaccesskey="k5oWT9Q9GRFeEe8EgQTguOzXzf0bR9uixunLrEPuWdBY8VGQM4DrmUS78gZq7lJBrmViDWkQjHbD9IneaJsA4uph0PUoG0qIMMepkc/D78nDLXrNK3Owwfq5UIaIWohoYsXJWXLeOUY=" encryptedaccesskeysecret="qVlygAOGJLk0UYvhVb8cB9jpF22NBSVoCW6q8YPXBUbs75X1YxwXFox4PykgT2goMCEI5TlJmvFQgHrb8Vph8afhMAxzaqKStvhQkWtuKZoG3UgCsg66dg==" realmid="655168710" dataSource="QBO" />
+  <record usermailid="kyle.rogers@gmail.com" encryptedaccesskey="k5oWT9Q9GREzFUyZWUOv4ShiXgMaDB0y62RJNuKBVQGOsSPGDEnaKI9xheas2susmzbA/dok6T7BGch39vStI6WwOiSBsT3+vrqyzlPxeOtt5i97JJwDhcfeYXuBqJY+cCfK6CT2tKs=" encryptedaccesskeysecret="0gicw7m3tY2JcvrpR7GfBEQR/+a4kfAF1gO/1kPgcRgV9tKKWgaieGgCyFIIP4XOHNpD4G+iN9nM1wkRWnmqPWBlh/1PYZou3kV7ztoZipNQoDUwSnQsjg==" realmid="123145842388867" dataSource="QBO" />
+</oauthtokenstorage>
